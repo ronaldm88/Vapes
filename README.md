@@ -19,6 +19,12 @@
 5. At least 1 ActiveRecord scope method (think max, min, count, etc.  )
 6. Nested form that writes to associated model through custom attribute writer.  
       Example:  New Recipe form with Add Ingredients
+
+      Beer
+        Brewery: Dropdown menu and/or textfield
+        Style: Dropdown menu and/or textfield
+        Rating: 0-5 select
+
 7. User Authentication
     Devise?
 
