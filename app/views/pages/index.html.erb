@@ -5,10 +5,17 @@
     <p>
       BeerMe is a place for you to enjoy your beer socially!  Here you can reach out to other beer people or something.
     </p>
+    <hr><hr>
+    <div class="row text-center">
+      <div class="col-md-6">
+        <p><small>Not signed up yet? Click below to create a new account!</small></p>
+        <%= link_to "Signup", new_user_registration_path, class:"btn btn-primary" %>
+      </div>
+      <div class="col-md-6">
+        <p><small>or you can login above in the navigation bar.</small></p>
+      </div>
+    </div>
 
-    <p>
-      Not signed up yet? Click below to create a new account!
-      <%= button_to "Signup", root_path, class:"btn btn-lg btn-primary" %>
     </p>
   </div>
 </div>
