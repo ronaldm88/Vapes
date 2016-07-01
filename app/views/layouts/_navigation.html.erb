@@ -10,12 +10,12 @@
       <%= link_to "BeerMe", root_path, class: "navbar-brand" %>
     </div>
 
-
+    <center>
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           <li><%= link_to "Beer", beers_path %></li>
-          <li><%= link_to "About", beers_path %></li>
-          <li><%= link_to "Contact", beers_path %></li>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
         </ul>
         <% if user_signed_in? %>
           <div class="navbar-form navbar-right white-text">
@@ -31,5 +31,6 @@
           </div>
         <% end %>
       </div><!--/.navbar-collapse -->
+    </center>
   </div>
 </nav>

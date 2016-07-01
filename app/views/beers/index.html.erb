@@ -9,6 +9,6 @@
   </p>
 <% else %>
   <% @beers.each do |beer| %>
-    <%= link_to beer.name, beer_path(beer) %><br>
+    <%= link_to beer.name, beer_path(beer) %> - <%= link_to beer.brewery, beers_path %><br>
   <% end %>
 <% end %>
