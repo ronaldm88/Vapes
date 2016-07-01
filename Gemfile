@@ -30,8 +30,6 @@ gem 'devise'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-
-gem 'high_voltage'
 gem 'pry'
 
 group :development, :test do

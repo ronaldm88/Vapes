@@ -1,3 +1,5 @@
+<%= current_user.username if user_signed_in? %>
+
 <div class="jumbotron">
   <div class="container">
     <h2>Welcome, come in and have a brew!</h2>
@@ -12,7 +14,8 @@
         <%= link_to "Signup", new_user_registration_path, class:"btn btn-primary" %>
       </div>
       <div class="col-md-6">
-        <p><small>or you can login above in the navigation bar.</small></p>
+        <p><small>or you can login below.</small></p>
+        <%= link_to "Login", new_user_session_path, class:"btn btn-primary" %>
       </div>
     </div>
 
