@@ -1,7 +1,8 @@
 class BeersController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @beer = Beer.new
-    @user = User.new
   end
 
   def create
@@ -15,10 +16,6 @@ class BeersController < ApplicationController
   end
 
   def index
-    unless user_signed_in?
-      @user = User.new
-    end
-
     @beers = Beer.all
   end
 

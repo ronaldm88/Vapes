@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def index
     if user_signed_in?
 
-      render :'beers/index'
+      redirect_to beers_path
     else
       @user = User.new
       render :index

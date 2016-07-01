@@ -1,12 +1,14 @@
-Beers#Index
-<br>
+<%= link_to "Add Beer", new_beer_path, class:"btn btn-success"  %>
+<br><br>
 <!--
   Turn Into Table, maybe last 10?
 -->
 <% if @beers.nil? %>
-  <%= link_to "Add Beer", new_beer_path, class:"btn btn-success"  %>
+  <p>
+    No beers in the database yet.
+  </p>
 <% else %>
   <% @beers.each do |beer| %>
-    <%= link_to beer.name, beer_path(beer) %>
+    <%= link_to beer.name, beer_path(beer) %><br>
   <% end %>
 <% end %>

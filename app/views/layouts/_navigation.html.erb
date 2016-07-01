@@ -10,7 +10,7 @@
       <%= link_to "BeerMe", root_path, class: "navbar-brand" %>
     </div>
 
-    <center>
+
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           <li><%= link_to "Beer", beers_path %></li>
@@ -20,7 +20,7 @@
         <% if user_signed_in? %>
           <div class="navbar-form navbar-right white-text">
             Logged in as <strong><%= current_user.email %></strong>
-            <%= link_to "Logout", destroy_user_session_path, class:"btn btn-warning" %>
+            <%= link_to "Logout", destroy_user_session_path, class:"btn btn-warning", method: "delete" %>
           </div>
 
         <% else %>
@@ -31,6 +31,5 @@
           </div>
         <% end %>
       </div><!--/.navbar-collapse -->
-    </center>
   </div>
 </nav>
