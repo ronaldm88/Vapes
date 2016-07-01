@@ -24,19 +24,11 @@
           </div>
 
         <% else %>
-          <%= form_for @user, :url => new_user_session_path, :html => {class: "navbar-form navbar-right"} do |f|%>
-            <div class="form-group">
-              <%= f.text_field :email, placeholder:"Email", class:"form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.password_field :password, placeholder:"Password", class:"form-control" %>
-            </div>
-
-            <%= f.submit "Login", class:"btn btn-success" %>
+          <div class="navbar-form navbar-rightf">
+            <%= link_to "Login", new_user_session_path, class:"btn btn-success" %>
 
             <%= link_to "Signup", new_user_registration_path, class:"btn btn-primary" %>
-          <% end %>
+          </div>
         <% end %>
       </div><!--/.navbar-collapse -->
     </center>
