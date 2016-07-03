@@ -1,0 +1,9 @@
+<%= link_to "Add Check In", new_check_in_path, class:"btn btn-success"  %>
+
+<h2>Most Recent Check-Ins</h2>
+
+<ul>
+  <% @check_ins.each do |check_in| %>
+    <li><%= display_check_in(check_in) %></li>
+  <% end %>
+</ul>

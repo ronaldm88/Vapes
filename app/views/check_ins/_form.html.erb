@@ -12,19 +12,30 @@
   <% end %>
 
   <%= form_for check_in do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class:"form-control" %><br>
-    </div>
-    <div class="form-group">
-      <%= f.label :style %>
-      <%= f.text_field :style, class:"form-control" %><br>
-    </div>
-    <div class="form-group">
-      <%= f.label :brewery %>
-      <%= f.text_field :brewery, class:"form-control" %><br>
-    </div>
+    <div class="container">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :beer %>
+          <%= f.collection_select :beer, Beer.all, :id, :name, class:"form-control" %><br>
+        </div>
+        <div class="form-group">
+          <%= f.label :rating %>
+          <%= f.select :rating, options_for_select(0..10), class:"form-control"%><br>
+        </div>
+        <div class="form-group col-md-8">
+          <%= f.label :comment %>
+          <%= f.text_area :comment, class:"form-control", placeholder:"Add comment here..." %><br>
+        </div>
 
-    <%= f.submit "Create Beer", class:"btn btn-primary" %>
+        <%= f.submit "Add Check In", class:"btn btn-primary" %>
+      </div>
+
+      <div class="col-md-6">
+        <p>Don't see your beer in the list? Add it below:</p>
+        <%= f.fields_for :beer do |beer_form| %>
+          <%= beer_form.submit %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
