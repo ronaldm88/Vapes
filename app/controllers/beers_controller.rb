@@ -11,7 +11,7 @@ class BeersController < ApplicationController
     if @beer.save
       redirect_to beer_path(@beer)
     else
-      render :back
+      redirect_to :back
     end
   end
 
