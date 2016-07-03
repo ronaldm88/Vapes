@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :check_ins
   root 'pages#index'
   devise_for :users
   resources :users

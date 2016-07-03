@@ -1,0 +1,30 @@
+<div class="col-md-4">
+  <% if check_in.errors.any? %>
+    <div class="check_in_error_messages">
+      <h3><%= pluralize(check_in.errors.count, "error") %> stopped us from adding this to the database.</h3>
+
+      <ul>
+        <% check_in.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for check_in do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %><br>
+    </div>
+    <div class="form-group">
+      <%= f.label :style %>
+      <%= f.text_field :style, class:"form-control" %><br>
+    </div>
+    <div class="form-group">
+      <%= f.label :brewery %>
+      <%= f.text_field :brewery, class:"form-control" %><br>
+    </div>
+
+    <%= f.submit "Create Beer", class:"btn btn-primary" %>
+  <% end %>
+</div>

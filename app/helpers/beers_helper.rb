@@ -1,11 +1,6 @@
 module BeersHelper
-
-  def display_beers(beers)
-
-  end
-
   def beer_error_messages(beer)
-    binding.pry
+    # Unused code that I never got working
     if beer.errors.any?
       content_tag :h2, "We couldn't add the beer because it's missing some required info."
 
