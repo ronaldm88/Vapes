@@ -1,4 +1,16 @@
 <div class="col-md-4">
+  <% if beer.errors.any? %>
+    <div class="beer_error_messages">
+      <h3><%= pluralize(beer.errors.count, "error") %> stopped us from adding this to the database.</h3>
+
+      <ul>
+        <% beer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form_for beer do |f| %>
     <div class="form-group">
       <%= f.label :name %>
