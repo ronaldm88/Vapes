@@ -16,7 +16,7 @@ class CheckInsController < ApplicationController
     if @check_in.save
       redirect_to user_check_in_path(current_user, @check_in)
     else
-      @check_in.beer = Beer.last
+      binding.pry
 
       if @check_in.save
         redirect_to user_check_in_path(current_user, @check_in)

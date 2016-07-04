@@ -8,11 +8,14 @@ class CheckIn < ActiveRecord::Base
   def self.build_from_attributes(attributes)
     beer_attributes = attributes.delete("beer_attributes")
 
-    if beer_attributes_empty?(beer_attributes)
-      self.new(attributes)
+    if !!attributes[:beer_id]
+      self.new do |check_in|
+        check_in.beer = Beer.create(beer_attributes)
+        check_in.rating = attributes[:rating]
+        check_in.comment = attributes[:comment]
+      end
     else
-      beer = Beer.create(beer_attributes)
-      self.new(attributes)
+      binding.pry
     end
   end
 
