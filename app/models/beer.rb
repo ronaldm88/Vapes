@@ -1,6 +1,6 @@
 class Beer < ActiveRecord::Base
-  has_many :checkins
-  has_many :users, through: :checkins
+  has_many :check_ins
+  has_many :users, through: :check_ins
 
   validates :name, presence: true, uniqueness: true
   validates :brewery, presence: true

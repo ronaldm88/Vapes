@@ -1,0 +1,9 @@
+<h1><%=  @user.username %>'s Profile</h1>
+
+<h3>Most Recent Check Ins</h3>
+<% @user.check_ins.each do |check_in| %>
+  <%= display_check_in(check_in) %><br><br>
+<% end %>
+
+<h3>Favorite Beer</h3>
+<%= link_to @user.favorite_beers(1).first.beer.name, beer_path(@user.favorite_beers(1).first.beer) %> - 

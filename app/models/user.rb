@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :checkins
-  has_many :beers, through: :checkins
+  has_many :check_ins
+  has_many :beers, through: :check_ins
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true
@@ -9,10 +9,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable, :validatable
 
-  def favorites
-    binding.pry
-
-    # Maybe select favorite 5/10 beers and display them in order of rating?
-
+  def favorite_beers(n)
+    self.check_ins.order(rating: :desc).limit(n)
   end
 end
