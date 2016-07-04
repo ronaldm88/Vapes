@@ -16,13 +16,7 @@ class CheckInsController < ApplicationController
     if @check_in.save
       redirect_to user_check_in_path(current_user, @check_in)
     else
-      binding.pry
-
-      if @check_in.save
-        redirect_to user_check_in_path(current_user, @check_in)
-      else
-        render :new
-      end
+      render :new
     end
   end
 

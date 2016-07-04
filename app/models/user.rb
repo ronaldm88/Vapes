@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :trackable, :validatable, :omniauthable
 
-  def favorite_beers(n)
-    self.check_ins.order(rating: :desc).limit(n)
+  def favorite_beer
+    self.check_ins.order(rating: :desc).limit(1).first
   end
 end

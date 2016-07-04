@@ -6,4 +6,4 @@
 <% end %>
 
 <h3>Favorite Beer</h3>
-<%= link_to @user.favorite_beers(1).first.beer.name, beer_path(@user.favorite_beers(1).first.beer) %> - 
+<%= favorite_beer_tag(@user) %>

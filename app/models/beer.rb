@@ -6,7 +6,19 @@ class Beer < ActiveRecord::Base
   validates :brewery, presence: true
   validates :style, presence: true
 
-  def most_recent
-    self.find(:all, :id => "id desc", :limit => 10)
+  def self.most_recent(n)
+    self.order(created_at: :desc).limit(n)
   end
+
+  # Not implemented yet, but would like to figure these out
+  #
+  # def self.most_check_ins
+  #   binding.pry
+  #
+  #   # from CheckIn... S
+  # end
+  #
+  # def self.highest_rated(n)
+  #   binding.pry
+  # end
 end

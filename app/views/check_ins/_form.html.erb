@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <%= f.label :beer_id %>
-          <%= f.collection_select :beer_id, Beer.all, :id, :name, {:prompt => 'Select Beer'}, class:"form-control" %><br>
+          <%= f.collection_select :beer_id, Beer.all, :id, :name, {:prompt => 'Select Beer or Add a New Beer On the Right ->'}, class:"form-control" %><br>
         </div>
         <div class="form-group">
           <%= f.label :rating %>
@@ -31,6 +31,18 @@
       </div>
 
       <div class="col-md-3 col-md-offset-2">
+        <% if check_in.beer.errors.any? %>
+          <div class="check_in_error_messages">
+            <h3><%= pluralize(check_in.beer.errors.count, "error") %> stopped us from adding this to the database.</h3>
+
+            <ul>
+              <% check_in.beer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <h3>Add a new beer:</h3>
         <%= f.fields_for :beer_attributes do |beer_form| %>
           <div class="form-group">
