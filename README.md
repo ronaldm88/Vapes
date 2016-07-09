@@ -2,9 +2,7 @@
 
 ## What is this?
 
-This is an application built using Ruby on Rails which allows a user to take notes on lectures.
-
-It's basically an Untappd clone that's only on the web.  
+This is an application built using Ruby on Rails which allows a user to keep track of the beers they like or don't like. It's basically an Untappd clone that's only on the web.  
 
 A user can sign up through the site or facebook, add beers, add check ins of beer, view other beers and check ins. All beers, check ins , and users are visible to anyone that has logged in.
 
