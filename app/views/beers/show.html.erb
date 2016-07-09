@@ -1,8 +1,10 @@
 <h1><%= @beer.name %></h1>
 
-<h3><%= @beer.brewery %></h3>
-<p>
-  <%= @beer.style %>
-</p>
-
+<h3>Brewery: <%= @beer.brewery %></h3>
+<p>Style: <%= @beer.style %>
+<br><hr><br>
+<h4>Recent CheckIns</h4>
+<% @beer.check_ins.last(5).each do |check_in| %>
+  <%= display_check_in(check_in) %><br><br>
+<% end %>
 <%= link_to "Back", beers_path %>

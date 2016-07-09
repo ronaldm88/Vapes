@@ -1,4 +1,7 @@
-<h2><%= @check_in.user.first_name %>'s Check In</h2>
-<p><strong><%= link_to @check_in.beer.name, beer_path(@check_in.beer) %></strong> brewed by <%= @check_in.beer.brewery %></p>
 
+<h3><%= link_to @check_in.beer.name, beer_path(@check_in.beer) %></h3>
+<p>brewed by <%= @check_in.beer.brewery %></p><br>
+<p><strong>Rating: <%= @check_in.rating %>/10</strong></p><br>
+<p><strong>Comment:</strong><br><%= @check_in.comment %></p><br>
+<p><%= @check_in.user.username %>'s Check In</p>
 <%= link_to "Back", check_ins_path %>

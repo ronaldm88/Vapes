@@ -1,15 +1,6 @@
-<div class="col-md-4">
-  <% if check_in.errors.any? %>
-    <div class="check_in_error_messages">
-      <h3><%= pluralize(check_in.errors.count, "error") %> stopped us from adding this to the database.</h3>
-
-      <ul>
-        <% check_in.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-md-6">
+  <%= resource_error_messages!(check_in) %>
 
   <%= form_for check_in, url: user_check_ins_path do |f| %>
     <div class="container">
@@ -30,34 +21,26 @@
         <%= f.submit "Add Check In", class:"btn btn-primary" %>
       </div>
 
-      <div class="col-md-3 col-md-offset-2">
-        <% if check_in.errors.any? %>
-          <div class="check_in_error_messages">
-            <h3><%= pluralize(check_in.errors.count, "error") %> stopped us from adding this to the database.</h3>
-
-            <ul>
-              <% check_in.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <h3>Add a new beer:</h3>
-        <%= f.fields_for :beer_attributes do |beer_form| %>
-          <div class="form-group">
-            <%= beer_form.label :name %>
-            <%= beer_form.text_field :name, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= beer_form.label :style %>
-            <%= beer_form.text_field :style, class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= beer_form.label :brewery %>
-            <%= beer_form.text_field :brewery, class:"form-control" %>
-          </div>
-        <% end %>
+      <div class="col-md-4">
+        <%= resource_error_messages!(check_in.beer) %>
+        
+        <div id="add-beer">
+          <h3>Add a new beer:</h3>
+          <%= f.fields_for :beer_attributes do |beer_form| %>
+            <div class="form-group">
+              <%= beer_form.label :name %>
+              <%= beer_form.text_field :name, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= beer_form.label :style %>
+              <%= beer_form.text_field :style, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= beer_form.label :brewery %>
+              <%= beer_form.text_field :brewery, class:"form-control" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def favorite_beer
-    self.check_ins.order(rating: :desc).limit(1).first
+    check_ins.order(rating: :desc).limit(1).first
   end
 end

@@ -32,3 +32,19 @@
    color: #468847;
    text-align: left;
 }
+
+.beer_error_messages {
+  padding:10px 25px;
+  background-color: #f2dede;
+  border:3px solid #eed3d7;
+  color: #b94a48;
+  text-align: left;
+  margin-bottom:25px;
+}
+
+#add-beer {
+  border:2px solid #555;
+  background: #666;
+  color:#fff;
+  padding:10px 30px;
+}

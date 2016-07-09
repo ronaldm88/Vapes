@@ -4,11 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
-
-# Test Data
-# {
-#   username: "One",
-#   first_name: "First",
-#   last_name: "Name",
-#   password: "testest"
-# }
