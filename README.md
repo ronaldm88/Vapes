@@ -42,6 +42,7 @@ A user can sign up through the site or facebook, add beers, add check ins of bee
 # Rails App requirements:
 
 ~~1. RoR~~
+
 ~~2. has_many, belongs_to, and has_many , through: relationships~~
 
     User has_many CheckIns
