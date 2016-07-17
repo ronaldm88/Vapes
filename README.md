@@ -43,6 +43,7 @@ A user can sign up through the site or facebook, add beers, add check ins of bee
 
 ~~1. RoR~~
 
+
 ~~2. has_many, belongs_to, and has_many , through: relationships~~
 
     User has_many CheckIns
@@ -67,14 +68,18 @@ A user can sign up through the site or facebook, add beers, add check ins of bee
     User#favorite_beer
     Beer.most_recent(n)
 
+
 ~~6. Nested form that writes to associated model through custom attribute writer.~~
       Add new beer on new CheckIn page
+
 
 ~~7. User Authentication~~
     Devise
 
+
 ~~8. Authenticate with some other service (facebook, twitter, foursquare, github, etc.)~~
     omniauth-facebook
+
 
 ~~9. Nested Resource with appropriate RESTful URLs.  Additionally, your nested resource
    must provide a form that relates to the parent resource. Imagine an application with
@@ -88,6 +93,7 @@ A user can sign up through the site or facebook, add beers, add check ins of bee
 
 
  ~~10. Forms need validation errors.  Fields enclosed with a fields_with_errors class.~~
+
 
  ~~11. Mostly DRY~~
      Encapsulate controller logic to Model methods

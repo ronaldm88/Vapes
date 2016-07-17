@@ -11,7 +11,7 @@ class CheckInsController < ApplicationController
   end
 
   def create
-    @check_in = current_user.check_ins.build_from_attributes(check_in_params)
+    @check_in = current_user.check_ins.build(check_in_params)
 
     if @check_in.save
       redirect_to user_check_in_path(current_user, @check_in)

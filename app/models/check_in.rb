@@ -5,7 +5,12 @@ class CheckIn < ActiveRecord::Base
   validates :beer_id, presence: true
   validates :rating, presence: true, inclusion: 0..10
 
+  def beer_attributes=(beer_attributes)
+    self.create_beer(beer_attributes) if beer_id.nil?
+  end
+
   def self.build_from_attributes(attributes)
+    binding.pry
     beer_attributes = attributes.delete("beer_attributes")
 
     if !attributes[:beer_id].empty?
