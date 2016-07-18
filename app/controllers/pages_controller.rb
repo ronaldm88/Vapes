@@ -11,6 +11,8 @@ class PagesController < ApplicationController
 
   def feed
     @check_ins = CheckIn.last(10)
+
+    render json: @check_ins, status: 201
   end
 
   def about
