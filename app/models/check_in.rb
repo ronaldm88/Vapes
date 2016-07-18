@@ -9,23 +9,23 @@ class CheckIn < ActiveRecord::Base
     self.create_beer(beer_attributes) if beer_id.nil?
   end
 
-  def self.build_from_attributes(attributes)
-    binding.pry
-    beer_attributes = attributes.delete("beer_attributes")
-
-    if !attributes[:beer_id].empty?
-      self.new do |check_in|
-        check_in.beer = Beer.find(attributes[:beer_id])
-        check_in.rating = attributes[:rating]
-        check_in.comment = attributes[:comment]
-      end
-    else
-      self.new do |check_in|
-        check_in.beer = Beer.create(beer_attributes)
-        check_in.rating = attributes[:rating]
-        check_in.comment = attributes[:comment]
-      end
-    end
+  # def self.build_from_attributes(attributes)
+  #   binding.pry
+  #   beer_attributes = attributes.delete("beer_attributes")
+  #
+  #   if !attributes[:beer_id].empty?
+  #     self.new do |check_in|
+  #       check_in.beer = Beer.find(attributes[:beer_id])
+  #       check_in.rating = attributes[:rating]
+  #       check_in.comment = attributes[:comment]
+  #     end
+  #   else
+  #     self.new do |check_in|
+  #       check_in.beer = Beer.create(beer_attributes)
+  #       check_in.rating = attributes[:rating]
+  #       check_in.comment = attributes[:comment]
+  #     end
+  #   end
   end
 
   def self.beer_attributes_empty?(attributes)
