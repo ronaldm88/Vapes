@@ -26,7 +26,7 @@ class CheckIn < ActiveRecord::Base
   #       check_in.comment = attributes[:comment]
   #     end
   #   end
-  end
+  # end
 
   def self.beer_attributes_empty?(attributes)
     attributes.values.all? { |v| v.blank? }

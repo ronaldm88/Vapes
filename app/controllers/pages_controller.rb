@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   end
 
   def feed
-
+    @check_ins = CheckIn.last(10)
   end
 
   def about
