@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def index
     if user_signed_in?
 
-      redirect_to feed_path
+      redirect_to :feed
     else
       @user = User.new
       render :index
@@ -12,7 +12,10 @@ class PagesController < ApplicationController
   def feed
     @check_ins = CheckIn.last(10)
 
-    render json: @check_ins, status: 201
+    respond_to do |f|
+      f.html { render :feed }
+      f.json { render json: @check_ins, status: 201 }
+    end
   end
 
   def about
