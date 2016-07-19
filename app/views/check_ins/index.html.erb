@@ -1,9 +1,19 @@
 <%= link_to "Add Check In", new_user_check_in_path(current_user), class:"btn btn-success"  %>
 
+<%= render 'index_form', check_in: CheckIn.new %>
+
 <h2>Most Recent Check-Ins</h2>
 
 <ul>
   <% @check_ins.each do |check_in| %>
     <li><%= display_check_in(check_in) %></li>
   <% end %>
+</ul>
+
+
+<ul>
+  <h3>To-Do</h3>
+  <strike><li>AMS Setup</li></strike>
+  <li>AJAX Form to Submit CheckIn</li>
+  <li>Send and Auto Load new CheckIn</li>
 </ul>

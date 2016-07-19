@@ -3,7 +3,12 @@ class CheckInsController < ApplicationController
   before_action :set_check_in, only: [:show, :edit, :update]
 
   def index
-    @check_ins = CheckIn.all
+    @check_ins = CheckIn.last(10)
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @check_ins }
+    end
+
   end
 
   def new

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :check_ins
   end
-  get 'feed' => 'pages#feed'
+  
   get 'about' => 'pages#about'
   get 'contact' => 'pages#contact'
 end
