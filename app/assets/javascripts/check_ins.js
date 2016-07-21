@@ -31,6 +31,10 @@ function formSubmitClean() {
   $('#new-check-in-form').hide("slow");
 }
 
+function resetForm(){
+  $('form').trigger("reset");
+}
+
 // Requests
 function postCheckIn(route, values) {
   var postRequest = $.post(route, values);
@@ -69,14 +73,15 @@ function processCheckIns(data) {
       return listItem;
     });
 
-
     $('.check-ins-list ul').prepend(newItems);
+    resetForm();
   }
-
-
 }
 
+//
 // R U READY??
+//
+
 $(function() {
   attachListeners();
   setInterval(function(){ getCheckIns(); }, 5000 );
