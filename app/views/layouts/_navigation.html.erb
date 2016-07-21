@@ -21,7 +21,7 @@
         </ul>
 
         <% if user_signed_in? %>
-          <div class="navbar-form navbar-right white-text">
+          <div class="navbar-form navbar-right white-text" id="<%= current_user.id %>">
             Logged in as <strong><%= current_user.email %></strong>
             <%= link_to "Profile", user_path(current_user), class:"btn btn-info" %>
             <%= link_to "Logout", destroy_user_session_path, class:"btn btn-warning", method: "delete" %>

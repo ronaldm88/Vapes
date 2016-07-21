@@ -2,7 +2,7 @@
   <div class="col-md-6">
   <%= resource_error_messages!(check_in) %>
 
-  <%= form_for check_in, url: user_check_ins_path do |f| %>
+  <%= form_for check_in, url: user_check_ins_path(current_user) do |f| %>
     <div class="container">
       <div class="col-md-6">
         <div class="form-group">
@@ -23,7 +23,7 @@
 
       <div class="col-md-4">
         <%= resource_error_messages!(check_in.beer) %>
-        
+
         <div id="add-beer">
           <h3>Add a new beer:</h3>
           <%= f.fields_for :beer_attributes do |beer_form| %>

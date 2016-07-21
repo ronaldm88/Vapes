@@ -1,19 +1,25 @@
-<%= link_to "Add Check In", new_user_check_in_path(current_user), class:"btn btn-success"  %>
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" name="button" class="btn btn-success" id="add-check-in">Add Check In</button>
 
-<%= render 'index_form', check_in: CheckIn.new %>
+    <h2>Most Recent Check-Ins</h2>
 
-<h2>Most Recent Check-Ins</h2>
-
-<ul>
-  <% @check_ins.each do |check_in| %>
-    <li><%= display_check_in(check_in) %></li>
-  <% end %>
-</ul>
+    <ul>
+      <% @check_ins.each do |check_in| %>
+        <li><%= display_check_in(check_in) %></li>
+      <% end %>
+    </ul>
 
 
-<ul>
-  <h3>To-Do</h3>
-  <strike><li>AMS Setup</li></strike>
-  <li>AJAX Form to Submit CheckIn</li>
-  <li>Send and Auto Load new CheckIn</li>
-</ul>
+    <ul>
+      <h3>To-Do</h3>
+      <strike><li>AMS Setup</li></strike>
+      <li>AJAX Form to Submit CheckIn</li>
+      <li>Send and Auto Load new CheckIn</li>
+    </ul>
+  </div>
+
+  <div class="col-md-6" id="new-check-in-form" style="display:none;">
+    <%= render 'index_form', check_in: @check_in %>
+  </div>
+</div>

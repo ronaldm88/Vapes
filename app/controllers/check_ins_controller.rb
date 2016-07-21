@@ -3,7 +3,9 @@ class CheckInsController < ApplicationController
   before_action :set_check_in, only: [:show, :edit, :update]
 
   def index
-    @check_ins = CheckIn.last(10)
+    @check_ins = CheckIn.last(10).reverse
+    @check_in = CheckIn.new
+    
     respond_to do |f|
       f.html { render :index }
       f.json { render json: @check_ins }
@@ -19,7 +21,10 @@ class CheckInsController < ApplicationController
     @check_in = current_user.check_ins.build(check_in_params)
 
     if @check_in.save
-      redirect_to user_check_in_path(current_user, @check_in)
+      respond_to do |f|
+        f.html { redirect_to user_check_in_path(current_user, @check_in) }
+        f.json { render json: @check_in }
+      end
     else
       render :new
     end
