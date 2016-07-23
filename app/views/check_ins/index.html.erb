@@ -3,14 +3,15 @@
     <h2>Last Ten Check-Ins</h2>
 
     <div class="list-group check-ins-list">
-
+      <!--  This is where the jQuery populates the index -->
     </div>
   </div>
 
   <div class="col-md-6">
     <button type="button" name="button" class="btn btn-success pull-right" id="add-check-in">Add Check In</button>
-    <div id="right-display" style="display:none;">
-      <%= render 'index_form', check_in: @check_in %>
+    <%= render 'index_form', check_in: @check_in %>
+    <div class="check-in-show">
+
     </div>
   </div>
 </div>

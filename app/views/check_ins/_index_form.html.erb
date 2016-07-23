@@ -1,20 +1,23 @@
-<%= resource_error_messages!(check_in) %>
+<div class="index-form" style="display:none;">
+  <%= resource_error_messages!(check_in) %>
 
-<%= form_for check_in, url: user_check_ins_path(current_user) do |f| %>
-  <div class="form-group">
-    <%= f.label :beer_id %>
-    <%= f.collection_select :beer_id, Beer.all, :id, :name, {:prompt => 'Select Beer From List'}, class:"form-control" %><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :rating %>
-    <%= f.select :rating, options_for_select(0..10), {:prompt => 'Select Rating'}, class:"form-control"%><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :comment %>
-    <%= f.text_area :comment, class:"form-control", placeholder:"Add comment here..." %><br>
-  </div>
+  <%= form_for check_in, url: user_check_ins_path(current_user) do |f| %>
+    <div class="form-group">
+      <%= f.label :beer_id %>
+      <%= f.collection_select :beer_id, Beer.all, :id, :name, {:prompt => 'Select Beer From List'}, class:"form-control" %><br>
+    </div>
+    <div class="form-group">
+      <%= f.label :rating %>
+      <%= f.select :rating, options_for_select(0..10), {:prompt => 'Select Rating'}, class:"form-control"%><br>
+    </div>
+    <div class="form-group">
+      <%= f.label :comment %>
+      <%= f.text_area :comment, class:"form-control", placeholder:"Add comment here..." %><br>
+    </div>
 
-  <%= f.submit "Add Check In", class:"btn btn-primary" %>
-  <%= button_tag "Cancel", class:"btn btn-warning", id:"cancel" %><br>
-  <p>Your beer not in the list?  <%= link_to "Click Here", new_beer_path, id:'click-here' %></p>
-<% end %>
+    <%= f.submit "Add Check In", class:"btn btn-primary" %>
+    <%= button_tag "Cancel", class:"btn btn-warning", id:"cancel" %><br>
+    <p>Your beer not in the list?  <%= link_to "Click Here", new_beer_path, id:'click-here' %></p>
+  <% end %>
+
+</div>

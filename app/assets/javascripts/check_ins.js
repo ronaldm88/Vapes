@@ -17,19 +17,13 @@ CheckIn.prototype.to_bootstrap_index_link = function() {
 }
 
 CheckIn.prototype.to_bootstrap_show_page = function() {
-  var html = '<h3><a href="/users/"'+ this.data.user.id + '/check_ins/'+ this.data.id + '">' + this.data.beer.name + '</a></h3';
+  var html = '<div class="index-check-in"><h3><a href="/users/'+ this.data.user.id + '/check_ins/'+ this.data.id + '">' + this.data.beer.name + '</a></h3><br>';
   html += '<p>brewed by ' + this.data.beer.brewery +'</p><br>';
-  html += '<p><strong>Rating: ' + this.data.beer.rating + '/10</strong></p><br>';
+  html += '<p><strong>Rating: ' + this.data.rating + '/10</strong></p><br>';
   html += '<p><strong>Comment: </strong><br>' + this.data.comment + '</p><br>';
   html += '<p>' + this.data.user.username + '\'s check in</p>'
-  html += '<button id="back">Back</button>';
-  console.log(html);
-  // <h3><%= link_to @check_in.beer.name, beer_path(@check_in.beer) %></h3>
-  // <p>brewed by <%= @check_in.beer.brewery %></p><br>
-  // <p><strong>Rating: <%= @check_in.rating %>/10</strong></p><br>
-  // <p><strong>Comment:</strong><br><%= @check_in.comment %></p><br>
-  // <p><%= @check_in.user.username %>'s Check In</p>'
-  // <%= link_to "Back", check_ins_path %>
+
+  return html;
 }
 
 // Event Listeners
@@ -37,9 +31,6 @@ function addBeerListener() {
   $('#click-here').on('click', function() {
     debugger;
   });
-  // $.get('/check_ins' + ".json", function(data) {
-  //   processCheckIns(data);
-  // });
 }
 
 function addCheckInUIListener() {
@@ -72,8 +63,9 @@ function addCheckInSubmitListener() {
 
 function indexListListener() {
   $('.check-ins-list').on('click', function(e) {
-    var path = e.target.split(":3000")[1];
-    showCheckIn(path);
+    e.preventDefault();
+    var path = e.target.href.split(":3000")[1];
+    getCheckIn(path);
   });
 }
 
@@ -83,18 +75,23 @@ function attachListeners() {
 }
 
 // UI Manipulation
-function showCheckIn(checkInNode) {
-  debugger;
+function showCheckIn(data) {
+  var checkIn = new CheckIn(data);
+  $('#add-check-in').show("slow");
+  $('.index-form').hide("fast");
+  $('.check-in-show').text("");
+  $('.check-in-show').append(checkIn.to_bootstrap_show_page());
 }
 
 function addForm() {
-  $('#right-display').show("slow");
+  $('.check-in-show').text("");
+  $('.index-form').show("slow");
   $('#add-check-in').hide("slow");
 }
 
 function formSubmitClean() {
   $('#add-check-in').show("slow");
-  $('#right-display').hide("slow");
+  $('.index-form').hide("slow");
   resetForm();
 }
 
@@ -103,6 +100,12 @@ function resetForm(){
 }
 
 // Requests
+function getCheckIn(path) {
+  $.get(path + ".json", function(data) {
+    showCheckIn(data);
+  });
+}
+
 function postCheckIn(route, values) {
   var postRequest = $.post(route, values);
 
