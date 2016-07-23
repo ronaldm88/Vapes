@@ -3,6 +3,15 @@ function addCheckInUIListener() {
   $('#add-check-in').on('click', function(e){
     addForm();
     addCheckInSubmitListener();
+    addCancelListener();
+  });
+}
+
+function addCancelListener() {
+  $('#cancel').on('click', function(e){
+    e.preventDefault();
+    resetForm();
+    formSubmitClean();
   });
 }
 
@@ -92,11 +101,8 @@ function processCheckIns(data) {
 
 $(function() {
   attachListeners();
-  var test = 0;
 
   setInterval(function() {
     getCheckIns();
-    console.log(test);
-    test += 15;
   }, 15000 );
 });
