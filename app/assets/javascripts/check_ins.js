@@ -7,18 +7,23 @@ CheckIn.prototype.datetime = function() {
 }
 
 CheckIn.prototype.to_bootstrap_index_link = function() {
-  var link = '<a class="list-group-item" id=' + this.data.id;
-  link += '" href="/users/' + this.data.user.id;
-  link += '/check_ins/' + this.data.id + '">';
+  var link = '<a class="list-group-item" id="' + this.data.id;
+  link += '" href="/users/' + this.data.user.id + '/check_ins/' + this.data.id+'">';
   link += this.data.rating + '/10 - ' + this.data.beer.name;
   link += ' by ' + this.data.user.username;
-  link += '<span class="pull-right">' + this.datetime() +'!</span></a>';
+  link += '<span class="badge pull-right">' + this.datetime() +'</span></a>';
 
   return link
 }
 
 CheckIn.prototype.to_bootstrap_show_page = function() {
-  debugger;
+  var html = '<h3><a href="/users/"'+ this.data.user.id + '/check_ins/'+ this.data.id + '">' + this.data.beer.name + '</a></h3';
+  html += '<p>brewed by ' + this.data.beer.brewery +'</p><br>';
+  html += '<p><strong>Rating: ' + this.data.beer.rating + '/10</strong></p><br>';
+  html += '<p><strong>Comment: </strong><br>' + this.data.comment + '</p><br>';
+  html += '<p>' + this.data.user.username + '\'s check in</p>'
+  html += '<button id="back">Back</button>';
+  console.log(html);
   // <h3><%= link_to @check_in.beer.name, beer_path(@check_in.beer) %></h3>
   // <p>brewed by <%= @check_in.beer.brewery %></p><br>
   // <p><strong>Rating: <%= @check_in.rating %>/10</strong></p><br>
@@ -57,6 +62,7 @@ function addCancelListener() {
 function addCheckInSubmitListener() {
   $('form').submit(function(e){
     e.preventDefault();
+    e.stopImmediatePropagation();
     var route = $(this).attr("action") + ".json";
     var values = $(this).serialize();
 
@@ -65,9 +71,9 @@ function addCheckInSubmitListener() {
 }
 
 function indexListListener() {
-  $('.list-group-item').on('click', function() {
-
-    showCheckIn($(this));
+  $('.check-ins-list').on('click', function(e) {
+    var path = e.target.split(":3000")[1];
+    showCheckIn(path);
   });
 }
 
@@ -77,18 +83,19 @@ function attachListeners() {
 }
 
 // UI Manipulation
-function showCheckIn(checkIn) {
+function showCheckIn(checkInNode) {
   debugger;
 }
 
 function addForm() {
-  $('#new-check-in-form').show("slow");
+  $('#right-display').show("slow");
   $('#add-check-in').hide("slow");
 }
 
 function formSubmitClean() {
   $('#add-check-in').show("slow");
-  $('#new-check-in-form').hide("slow");
+  $('#right-display').hide("slow");
+  resetForm();
 }
 
 function resetForm(){
@@ -101,6 +108,7 @@ function postCheckIn(route, values) {
 
   postRequest.done(function(data) {
     formSubmitClean();
+    getCheckIns();
   });
 }
 
@@ -137,32 +145,20 @@ function processCheckIns(data) {
 
   $('.check-ins-list').text('');
   $('.check-ins-list').prepend(newItems);
-  // debugger;
-  // var prevLastCheckIn = parseInt($('.check-ins-list a').first().attr("id"));
-  // var dataLastCheckIn = data[0].id;
-  //
-  // if (prevLastCheckIn < dataLastCheckIn) {
-  //   var newCheckIns = filterCheckIn(data, prevLastCheckIn);
-  //   debugger;
-  //   var newItems = buildCheckInsList(newCheckIns);
-  //
-  //   $('.check-ins-list').prepend(newItems);
-  //   resetForm();
-  // }
 }
 
 //
 // R U READY??
 //
 
-$(function() {
+$(document).ready(function() {
   getCheckIns();
   attachListeners();
   jQuery("time.timeago").timeago();
 
-  if (window.location.pathname === "/check_ins") {
-    setInterval(function() {
-      getCheckIns();
-    }, 15000 );
-  }
+  // if (window.location.pathname === "/check_ins") {
+  //   setInterval(function() {
+  //     getCheckIns();
+  //   }, 15000 );
+  // }
 });

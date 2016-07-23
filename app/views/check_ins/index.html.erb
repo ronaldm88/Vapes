@@ -1,17 +1,16 @@
  <div class="row">
   <div class="col-md-6">
-    <button type="button" name="button" class="btn btn-success" id="add-check-in">Add Check In</button>
-
     <h2>Last Ten Check-Ins</h2>
 
-    <ul class="list-group check-ins-list">
-      <!-- <% @check_ins.each do |check_in| %>
-        <%= link_to display_check_in(check_in), user_check_in_path(current_user, check_in), id: check_in.id, class:"list-group-item" %>
-      <% end %> -->
-    </ul>
+    <div class="list-group check-ins-list">
+
+    </div>
   </div>
 
-  <div class="col-md-6" id="new-check-in-form" style="display:none;">
-    <%= render 'index_form', check_in: @check_in %>
+  <div class="col-md-6">
+    <button type="button" name="button" class="btn btn-success pull-right" id="add-check-in">Add Check In</button>
+    <div id="right-display" style="display:none;">
+      <%= render 'index_form', check_in: @check_in %>
+    </div>
   </div>
 </div>
