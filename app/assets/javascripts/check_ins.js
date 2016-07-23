@@ -17,11 +17,11 @@ CheckIn.prototype.to_bootstrap_index_link = function() {
 }
 
 CheckIn.prototype.to_bootstrap_show_page = function() {
-  var html = '<div class="index-check-in"><h3><a href="/users/'+ this.data.user.id + '/check_ins/'+ this.data.id + '">' + this.data.beer.name + '</a></h3><br>';
+  var html = '<div class="container index-check-in"><h3><a href="/users/'+ this.data.user.id + '/check_ins/'+ this.data.id + '">' + this.data.beer.name + '</a></h3><br>';
   html += '<p>brewed by ' + this.data.beer.brewery +'</p><br>';
   html += '<p><strong>Rating: ' + this.data.rating + '/10</strong></p><br>';
   html += '<p><strong>Comment: </strong><br>' + this.data.comment + '</p><br>';
-  html += '<p>' + this.data.user.username + '\'s check in</p>'
+  html += '<p><a href="/users/' + this.data.user.id + '">' + this.data.user.username + '\'s</a> check in</p>'
 
   return html;
 }
