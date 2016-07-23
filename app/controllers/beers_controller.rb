@@ -21,7 +21,6 @@ class BeersController < ApplicationController
 
   def show
     @beer = Beer.find(params[:id])
-    binding.pry
   end
 
   private

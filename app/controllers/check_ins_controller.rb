@@ -5,12 +5,19 @@ class CheckInsController < ApplicationController
   def index
     @check_ins = CheckIn.last(10).reverse
     @check_in = CheckIn.new
-    
+
     respond_to do |f|
       f.html { render :index }
       f.json { render json: @check_ins }
     end
 
+  end
+
+  def show
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @check_in }
+    end
   end
 
   def new

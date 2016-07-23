@@ -1,11 +1,20 @@
-function CheckIn(beer, rating, comment="") {
-  this.beer = beer;
-  this.rating = rating;
-  this.comment = comment;
+function CheckIn(data) {
+  this.data = data;
+}
+
+CheckIn.prototype.datetime = function() {
+  return jQuery.timeago(this.data.created_at);
 }
 
 CheckIn.prototype.to_bootstrap_index_link = function() {
-  console.log("beer: " + this.beer );
+  var link = '<a class="list-group-item" id=' + this.data.id;
+  link += '" href="/users/' + this.data.user.id;
+  link += '/check_ins/' + this.data.id + '">';
+  link += this.data.rating + '/10 - ' + this.data.beer.name;
+  link += ' by ' + this.data.user.username;
+  link += '<span class="pull-right">' + this.datetime() +'!</span></a>';
+
+  return link
 }
 
 CheckIn.prototype.to_bootstrap_show_page = function() {
@@ -101,8 +110,6 @@ function getCheckIns() {
   });
 }
 
-
-
 // Manual Labor
 function filterCheckIn(data, id) {
   return data.map(function(checkIn) {
@@ -114,30 +121,34 @@ function filterCheckIn(data, id) {
 
 function buildCheckInsList(checkIns) {
   return checkIns.map(function(checkIn) {
-    debugger;
-    var listItem = '<a class="list-group-item" id="' + checkIn.id;
-    listItem += '" href="/users/' + checkIn.user.id;
-    listItem += '/check_ins/' + checkIn.id
-    listItem += '">' + checkIn.rating + '/10 - ' + checkIn.beer.name;
-    listItem += ' by ' + checkIn.user.username + ', just now!';
-    listItem += '</a>';
-
-    return listItem;
+    return checkIn.to_bootstrap_index_link();
   });
 }
 
 function processCheckIns(data) {
-  var prevLastCheckIn = parseInt($('.check-ins-list a').first().attr("id"));
-  var dataLastCheckIn = data[0].id;
+  var checkIns = [];
 
-  if (prevLastCheckIn < dataLastCheckIn) {
-    var newCheckIns = filterCheckIn(data, prevLastCheckIn);
+  data.forEach(function(d){
+    var checkIn = new CheckIn(d);
+    checkIns.push(checkIn)
+  });
 
-    var newItems = buildCheckInsList(newCheckIns);
+  var newItems = buildCheckInsList(checkIns);
 
-    $('.check-ins-list').prepend(newItems);
-    resetForm();
-  }
+  $('.check-ins-list').text('');
+  $('.check-ins-list').prepend(newItems);
+  // debugger;
+  // var prevLastCheckIn = parseInt($('.check-ins-list a').first().attr("id"));
+  // var dataLastCheckIn = data[0].id;
+  //
+  // if (prevLastCheckIn < dataLastCheckIn) {
+  //   var newCheckIns = filterCheckIn(data, prevLastCheckIn);
+  //   debugger;
+  //   var newItems = buildCheckInsList(newCheckIns);
+  //
+  //   $('.check-ins-list').prepend(newItems);
+  //   resetForm();
+  // }
 }
 
 //
@@ -145,7 +156,9 @@ function processCheckIns(data) {
 //
 
 $(function() {
+  getCheckIns();
   attachListeners();
+  jQuery("time.timeago").timeago();
 
   if (window.location.pathname === "/check_ins") {
     setInterval(function() {
