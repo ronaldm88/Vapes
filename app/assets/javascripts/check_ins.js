@@ -1,9 +1,39 @@
+function CheckIn(beer, rating, comment="") {
+  this.beer = beer;
+  this.rating = rating;
+  this.comment = comment;
+}
+
+CheckIn.prototype.to_bootstrap_index_link = function() {
+  console.log("beer: " + this.beer );
+}
+
+CheckIn.prototype.to_bootstrap_show_page = function() {
+  debugger;
+  // <h3><%= link_to @check_in.beer.name, beer_path(@check_in.beer) %></h3>
+  // <p>brewed by <%= @check_in.beer.brewery %></p><br>
+  // <p><strong>Rating: <%= @check_in.rating %>/10</strong></p><br>
+  // <p><strong>Comment:</strong><br><%= @check_in.comment %></p><br>
+  // <p><%= @check_in.user.username %>'s Check In</p>'
+  // <%= link_to "Back", check_ins_path %>
+}
+
 // Event Listeners
+function addBeerListener() {
+  $('#click-here').on('click', function() {
+    debugger;
+  });
+  // $.get('/check_ins' + ".json", function(data) {
+  //   processCheckIns(data);
+  // });
+}
+
 function addCheckInUIListener() {
   $('#add-check-in').on('click', function(e){
     addForm();
     addCheckInSubmitListener();
     addCancelListener();
+    addBeerListener();
   });
 }
 
@@ -25,11 +55,23 @@ function addCheckInSubmitListener() {
   });
 }
 
+function indexListListener() {
+  $('.list-group-item').on('click', function() {
+
+    showCheckIn($(this));
+  });
+}
+
 function attachListeners() {
   addCheckInUIListener();
+  indexListListener();
 }
 
 // UI Manipulation
+function showCheckIn(checkIn) {
+  debugger;
+}
+
 function addForm() {
   $('#new-check-in-form').show("slow");
   $('#add-check-in').hide("slow");
@@ -59,6 +101,8 @@ function getCheckIns() {
   });
 }
 
+
+
 // Manual Labor
 function filterCheckIn(data, id) {
   return data.map(function(checkIn) {
@@ -70,12 +114,13 @@ function filterCheckIn(data, id) {
 
 function buildCheckInsList(checkIns) {
   return checkIns.map(function(checkIn) {
+    debugger;
     var listItem = '<a class="list-group-item" id="' + checkIn.id;
     listItem += '" href="/users/' + checkIn.user.id;
     listItem += '/check_ins/' + checkIn.id
     listItem += '">' + checkIn.rating + '/10 - ' + checkIn.beer.name;
     listItem += ' by ' + checkIn.user.username + ', just now!';
-    listItem += '</a></li>';
+    listItem += '</a>';
 
     return listItem;
   });
@@ -102,7 +147,9 @@ function processCheckIns(data) {
 $(function() {
   attachListeners();
 
-  setInterval(function() {
-    getCheckIns();
-  }, 15000 );
+  if (window.location.pathname === "/check_ins") {
+    setInterval(function() {
+      getCheckIns();
+    }, 15000 );
+  }
 });

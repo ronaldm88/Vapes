@@ -15,5 +15,6 @@
   </div>
 
   <%= f.submit "Add Check In", class:"btn btn-primary" %>
-  <%= button_tag "Cancel", class:"btn btn-warning", id:"cancel" %>
+  <%= button_tag "Cancel", class:"btn btn-warning", id:"cancel" %><br>
+  <p>Your beer not in the list?  <%= link_to "Click Here", new_beer_path, id:'click-here' %></p>
 <% end %>
