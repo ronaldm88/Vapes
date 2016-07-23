@@ -4,13 +4,11 @@
 
     <h2>Last Ten Check-Ins</h2>
 
-    <div class="check-ins-list">
-      <ul>
-        <% @check_ins.each do |check_in| %>
-          <li><%= display_check_in(check_in) %></li>
-        <% end %>
-      </ul>
-    </div>
+    <ul class="list-group check-ins-list">
+      <% @check_ins.each do |check_in| %>
+        <%= link_to display_check_in(check_in), user_check_in_path(current_user, check_in), id: check_in.id, class:"list-group-item" %>
+      <% end %>
+    </ul>
   </div>
 
   <div class="col-md-6" id="new-check-in-form" style="display:none;">

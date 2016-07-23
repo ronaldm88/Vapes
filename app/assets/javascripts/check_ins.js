@@ -18,8 +18,6 @@ function addCheckInSubmitListener() {
 
 function attachListeners() {
   addCheckInUIListener();
-
-  setInterval(function(){ getCheckIns(); }, 15000 );
 }
 
 // UI Manipulation
@@ -63,8 +61,8 @@ function filterCheckIn(data, id) {
 
 function buildCheckInsList(checkIns) {
   return checkIns.map(function(checkIn) {
-    var listItem = '<li id="' + checkIn.id;
-    listItem += '"><a href="/users/' + checkIn.user.id;
+    var listItem = '<a class="list-group-item" id="' + checkIn.id;
+    listItem += '" href="/users/' + checkIn.user.id;
     listItem += '/check_ins/' + checkIn.id
     listItem += '">' + checkIn.rating + '/10 - ' + checkIn.beer.name;
     listItem += ' by ' + checkIn.user.username + ', just now!';
@@ -75,7 +73,7 @@ function buildCheckInsList(checkIns) {
 }
 
 function processCheckIns(data) {
-  var prevLastCheckIn = parseInt($('.check-ins-list li a').first().attr("id"));
+  var prevLastCheckIn = parseInt($('.check-ins-list a').first().attr("id"));
   var dataLastCheckIn = data[0].id;
 
   if (prevLastCheckIn < dataLastCheckIn) {
@@ -83,7 +81,7 @@ function processCheckIns(data) {
 
     var newItems = buildCheckInsList(newCheckIns);
 
-    $('.check-ins-list ul').prepend(newItems);
+    $('.check-ins-list').prepend(newItems);
     resetForm();
   }
 }
@@ -94,4 +92,11 @@ function processCheckIns(data) {
 
 $(function() {
   attachListeners();
+  var test = 0;
+
+  setInterval(function() {
+    getCheckIns();
+    console.log(test);
+    test += 15;
+  }, 15000 );
 });
