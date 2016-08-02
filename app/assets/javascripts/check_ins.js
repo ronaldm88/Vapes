@@ -116,7 +116,7 @@ function postCheckIn(route, values) {
 }
 
 function getCheckIns() {
-  $.get('/check_ins' + ".json", function(data) {
+  $.get('/check_ins.json', function(data) {
     processCheckIns(data);
   });
 }
